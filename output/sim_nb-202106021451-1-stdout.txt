@@ -1,0 +1,34 @@
+method = sample (Default)
+  sample
+    num_samples = 1
+    num_warmup = 1000 (Default)
+    save_warmup = 0 (Default)
+    thin = 1 (Default)
+    adapt
+      engaged = 1 (Default)
+      gamma = 0.050000000000000003 (Default)
+      delta = 0.80000000000000004 (Default)
+      kappa = 0.75 (Default)
+      t0 = 10 (Default)
+      init_buffer = 75 (Default)
+      term_buffer = 50 (Default)
+      window = 25 (Default)
+    algorithm = fixed_param
+id = 1
+data
+  file = /var/folders/1c/vd4s85fn44q78l5vrmmwn06c0000gn/T/tmp5j83gn_k/jmqtwli5.json
+init = 2 (Default)
+random
+  seed = 61483
+output
+  file = /Users/gibs/projects/birdman-jr/output/sim_nb-202106021451-1.csv
+  diagnostic_file =  (Default)
+  refresh = 100 (Default)
+  sig_figs = -1 (Default)
+
+Iteration: 1 / 1 [100%]  (Sampling)
+
+ Elapsed Time: 0 seconds (Warm-up)
+               0.001 seconds (Sampling)
+               0.001 seconds (Total)
+
