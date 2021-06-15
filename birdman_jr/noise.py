@@ -2,24 +2,26 @@ import numpy as np
 from numpy.random import (randint, normal)
 from skbio.stats.composition import (alr, alr_inv)
 
+
 def add_noise(mat,
-              pseudocount = 1,
-              percent_normal = 0.1,
-              percent_random = 0.1,
-              random_count = 1,
-              add_missing_at_random = False,
-              percent_missing = 0.1):
-    
+              pseudocount=1,
+              percent_normal=0.1,
+              percent_random=0.1,
+              random_count=1,
+              add_missing_at_random=False,
+              percent_missing=0.1):
     """
     This function transforms count data into
     the simplex with the ALR This gives the
     data an approximate normal distibution,
     allowing for the addition of normal
     and randomly distributed noise. The data
-    is transformed into proportions with the 
+    is transformed into proportions with the
     inverse alr and then missing values can be
     added, either to match the input or at random.
 
+    Parameters
+    ----------
     mat: array_like
         matrix of strictly positive counts
         or probabilities/proportions.
@@ -42,15 +44,29 @@ def add_noise(mat,
         mat. If True percent_missing is ignored.
     percent_missing: float
         Percent of data to add missing (zero)
-        values. Default is 0.1 (i.e. 10%)    
+        values. Default is 0.1 (i.e. 10%)
+
+    Returns
+    -------
+    array_like, np.float
+       A matrix of noisy proportions.
+
+    Raises
+    ------
+    ValueError
+       Raises an error if any values are negative.
+    ValueError
+       Raises an error if the matrix has more than 2 dimension.
+    ValueError
+       Raises an error if there is a row that has all zeros.
     """
 
-    # transform mat into ALR space for 
-    # adding normal dist. noise 
+    # transform mat into ALR space for
+    # adding normal dist. noise
     mat_noise = alr(mat + pseudocount)
 
     # add homo-scedastic noise
-    err = pnormal * np.ones_like(mat_noise)
+    err = percent_normal * np.ones_like(mat_noise)
     mat_noise = normal(mat_noise, err)
 
     # add hetero-scedastic noise
